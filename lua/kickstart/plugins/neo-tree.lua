@@ -20,6 +20,16 @@ return {
           ['\\'] = 'close_window',
         },
       },
+      filtered_items = {
+        -- visible = true,
+        never_show = { '.git' },
+        hide_dotfiles = false,
+      },
     },
   },
+  -- config = function()
+  --   require('neo-tree').setup {}
+  --
+  --   vim.api.nvim_win_set_width(vim.fn.winnr(), 27)
+  -- end,
 }

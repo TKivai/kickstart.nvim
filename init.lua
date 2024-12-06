@@ -642,6 +642,11 @@ require('lazy').setup({
             },
           },
         },
+        astro = {
+          capabilities = capabilities,
+          -- on_attach = on_attach,
+          filetypes = { 'astro' },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -671,6 +676,10 @@ require('lazy').setup({
             require('lspconfig')[server_name].setup(server)
           end,
         },
+        ensure_installed = {
+          'astro',
+        },
+        automatic_installation = true,
       }
     end,
   },
@@ -712,8 +721,31 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- is found.
+        javascript = { 'prettierd' },
+        typescript = { 'prettierd' },
+        javascriptreact = { 'prettierd', 'rustywind' },
+        typescriptreact = { 'prettierd', 'rustywind' },
+        -- vue = { 'prettierd' },
+        css = { 'prettierd' },
+        html = { 'prettierd', 'rustywind' },
+        json = { 'prettierd' },
+        yaml = { 'prettierd' },
+        markdown = { 'prettierd' },
+        graphql = { 'prettierd' },
+      },
+      formatters = {
+        prettierd = {
+          command = 'prettierd $FILENAME',
+          -- args = { vim.api.nvim_buf_get_name(0) },
+          -- args = { '$FILENAME' },
+          -- stdin = true,
+        },
+        rustywind = {
+          command = 'rustywind --stdin',
+          stdin = true,
+        },
       },
     },
   },
@@ -898,7 +930,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'astro' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -931,7 +963,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
