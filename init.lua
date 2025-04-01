@@ -625,7 +625,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -727,6 +727,7 @@ require('lazy').setup({
         typescript = { 'prettierd' },
         javascriptreact = { 'prettierd', 'rustywind' },
         typescriptreact = { 'prettierd', 'rustywind' },
+        svelte = { 'prettierd' },
         -- vue = { 'prettierd' },
         css = { 'prettierd' },
         html = { 'prettierd', 'rustywind' },
@@ -737,9 +738,9 @@ require('lazy').setup({
       },
       formatters = {
         prettierd = {
-          command = 'prettierd $FILENAME',
+          command = 'prettierd',
           -- args = { vim.api.nvim_buf_get_name(0) },
-          -- args = { '$FILENAME' },
+          args = { '-filename', '$FILENAME' },
           -- stdin = true,
         },
         rustywind = {

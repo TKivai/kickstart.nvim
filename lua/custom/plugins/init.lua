@@ -5,4 +5,6 @@
 return {
   -- { 'imsnif/kdl.vim' },
   { 'virchau13/tree-sitter-astro' },
+
+  { 'nvim-tree/nvim-web-devicons' },
 }
